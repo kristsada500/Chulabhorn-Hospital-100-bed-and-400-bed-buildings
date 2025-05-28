@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>การนำเสนอหุ่นยนต์ Keenon W3 ณ โรงพยาบาลจุฬาภรณ์</title>
+    <link href="http://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Kanit', sans-serif; /* ใช้ Kanit จาก Google Fonts */
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa; /* สีพื้นหลังที่นุ่มนวลขึ้น */
+            color: #343a40; /* สีข้อความหลักที่เข้มขึ้นเล็กน้อย */
+            
+        }
+        .container {
+            width: 90%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px 0;
+            max-width: 1200px;
+        }
+        header {
+            background: linear-gradient(to right, #0056b3, #004085); /* เพิ่ม Gradient */
+            color: #fff;
+            padding-top: 25px; /* ปรับ padding */
+            padding-bottom: 15px; /* ปรับ padding */
+            min-height: 70px;
+            border-bottom: #003366 3px solid; /* ปรับสี border */
+            text-align: center;
+            position: sticky; /* Sticky Header */
+            top: 0;
+            width: 100%;
+            z-index: 1000; /* อยู่บนสุด */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25); /* เพิ่มเงาให้ชัดขึ้น */
+        }
+        header h1 {
+            margin: 0;
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2em; /* ปรับขนาดหัวข้อ */
+            letter-spacing: 1px; /* เพิ่มระยะห่างตัวอักษร */
+        }
+        header h1 img {
+            height: 45px; /* เพิ่มขนาดโลโก้เล็กน้อย */
+            margin-right: 12px; /* เพิ่มช่องว่าง */
+            vertical-align: middle;
+        }
+        nav ul {
+            padding: 0;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            margin-top: 15px; /* เพิ่ม margin */
+        }
+        nav ul li {
+            padding: 0 18px; /* เพิ่ม padding */
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 17px; /* ปรับขนาดฟอนต์ */
+            padding: 8px 12px; /* เพิ่ม padding เพื่อให้คลิกง่ายขึ้น */
+            border-radius: 5px; /* เพิ่มความโค้งมน */
+            transition: all 0.3s ease; /* เพิ่ม transition */
+        }
+        nav a:hover, nav a.active {
+            color: #212529; /* สีเข้มขึ้นเมื่อ Hover/Active */
+            background-color: #ffc107; /* สีทองเป็นพื้นหลัง */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3); /* เพิ่มเงา */
+            transform: translateY(-2px); /* ขยับขึ้นเล็กน้อย */
+        }
+        .hero {
+            position: relative;
+            background: url('images/image_424554.jpg') no-repeat center center/cover;
+            color: #fff;
+            min-height: 500px; /* เพิ่มความสูง */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex-direction: column;
+            padding: 20px;
+            background-color: #007bff;
+            z-index: 1;
+            animation: fadeIn 1.5s ease-out; /* เพิ่ม Animation */
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* เพิ่มความเข้มของ Overlay เป็น 70% */
+            z-index: -1;
+        }
+        .hero h2 {
+            font-size: 3em; /* เพิ่มขนาดฟอนต์ */
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.9); /* ปรับเงาให้ชัดขึ้น */
+            animation: slideInFromTop 1s ease-out; /* เพิ่ม Animation */
+        }
+        .hero p {
+            font-size: 1.4em; /* เพิ่มขนาดฟอนต์ */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8); /* ปรับเงา */
+            animation: slideInFromBottom 1s ease-out 0.3s forwards; /* เพิ่ม Animation และ Delay */
+            opacity: 0; /* ซ่อนไว้ก่อน Animation */
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px; /* เพิ่ม margin */
+            color: #0056b3;
+            font-size: 2.8em; /* ปรับขนาดหัวข้อหลักให้ใหญ่ขึ้น */
+            position: relative;
+            padding-bottom: 15px; /* เพิ่ม padding */
+            letter-spacing: 0.5px;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px; /* เพิ่มความยาวเส้น */
+            height: 4px; /* เพิ่มความหนาเส้น */
+            background-color: #007bff;
+            border-radius: 2px; /* เพิ่มความโค้งมน */
+        }
+        .content-block {
+            background: #fff;
+            padding: 40px; /* เพิ่ม padding */
+            margin-bottom: 35px; /* เพิ่ม margin */
+            border-radius: 15px; /* เพิ่มความโค้งมน */
+            box-shadow: 0 6px 16px rgba(0,0,0,0.18); /* ปรับเงาให้ดูมีมิติขึ้น */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .content-block:hover {
+            transform: translateY(-8px); /* ขยับขึ้นเล็กน้อยเมื่อเมาส์ชี้ */
+            box-shadow: 0 12px 25px rgba(0,0,0,0.3); /* เพิ่มเงาให้ชัดเจนขึ้น */
+        }
+        .content-block h3 {
+            color: #0056b3;
+            margin-top: 25px; /* เพิ่ม margin */
+            margin-bottom: 15px; /* เพิ่ม margin */
+            font-size: 1.8em; /* ปรับขนาดหัวข้อรอง */
+            border-bottom: 1px solid #e0e0e0; /* เพิ่มเส้นใต้เล็กน้อย */
+            padding-bottom: 10px;
+        }
+        .content-block h4 {
+            color: #004085;
+            margin-top: 20px; /* เพิ่ม margin */
+            margin-bottom: 10px;
+            font-size: 1.3em; /* ปรับขนาดหัวข้อย่อย */
+        }
+        .content-block ul {
+            list-style: none; /* ลบ bullet เดิม */
+            margin-left: 0;
+            padding-left: 0;
+        }
+        .content-block ul li {
+            margin-bottom: 10px;
+            padding-left: 25px; /* เพิ่ม padding เพื่อไอคอน */
+            position: relative;
+        }
+        .content-block ul li i { /* สไตล์สำหรับไอคอนในรายการ */
+            position: absolute;
+            left: 0;
+            top: 3px;
+            color: #007bff; /* สีไอคอน */
+        }
+        /* Style for general image galleries */
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px; /* เพิ่มช่องว่าง */
+            justify-content: center;
+            margin-top: 25px;
+        }
+        .image-gallery-item {
+            text-align: center;
+            max-width: 280px; /* ปรับขนาดให้ใหญ่ขึ้นเล็กน้อย */
+            flex: 1 1 280px; /* ยืดหยุ่นมากขึ้น */
+            background-color: #ffffff; /* สีพื้นหลังขาว */
+            border-radius: 12px; /* เพิ่มความโค้งมน */
+            padding: 15px; /* เพิ่ม padding */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .image-gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+        }
+        .image-gallery-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px; /* เพิ่มความโค้งมน */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+        }
+        /* Specific style for "จุดจอดหุ่นยนต์ที่เสนอ" images */
+        .stop-point-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px; /* เพิ่มช่องว่าง */
+            justify-content: center;
+            margin-top: 25px;
+        }
+        .stop-point-item {
+            flex: 1 1 30%;
+            max-width: 320px; /* เพิ่มขนาดสูงสุด */
+            text-align: center;
+            background-color: #ffffff; /* สีพื้นหลังขาว */
+            border-radius: 12px; /* เพิ่มความโค้งมน */
+            padding: 15px; /* เพิ่ม padding */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .stop-point-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+        }
+        .stop-point-item img {
+            width: 100%;
+            height: 220px; /* เพิ่มความสูง */
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+        }
+        .image-caption {
+            text-align: center;
+            font-size: 1em; /* ปรับขนาดฟอนต์ */
+            color: #555; /* ปรับสี */
+            margin-top: 10px; /* เพิ่ม margin-top */
+        }
+        .video-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px; /* เพิ่ม margin */
+            padding: 25px; /* เพิ่ม padding รอบวิดีโอ */
+            background-color: #e9ecef; /* สีพื้นหลังที่นุ่มนวล */
+            border-radius: 15px; /* เพิ่มความโค้งมน */
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.15); /* เพิ่มเงาด้านในให้ชัดขึ้น */
+        }
+        .video-container iframe {
+            width: 100%;
+            max-width: 800px; /* เพิ่มขนาดสูงสุดของวิดีโอ */
+            height: 450px; /* เพิ่มความสูงของวิดีโอ */
+            border-radius: 12px; /* เพิ่มความโค้งมน */
+            box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+        }
+        footer {
+            text-align: center;
+            padding: 30px; /* เพิ่ม padding */
+            background: linear-gradient(to right, #343a40, #212529); /* เพิ่ม Gradient */
+            color: #fff;
+            margin-top: 40px; /* เพิ่ม margin-top */
+            border-top: 4px solid #6c757d; /* ปรับสี border */
+        }
+
+        /* Back to Top Button */
+        #backToTop {
+            display: none;
+            position: fixed;
+            bottom: 30px; /* ปรับตำแหน่ง */
+            right: 30px; /* ปรับตำแหน่ง */
+            background-color: #007bff; /* สีฟ้าสดใส */
+            color: white;
+            padding: 15px 20px; /* เพิ่มขนาด */
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.4em; /* ปรับขนาดฟอนต์ */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            z-index: 999;
+        }
+        #backToTop:hover {
+            background-color: #0056b3; /* สีเข้มขึ้นเมื่อ Hover */
+            transform: translateY(-5px); /* ขยับขึ้นมากขึ้น */
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+        }
+
+        /* Keyframe Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideInFromTop {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes slideInFromBottom {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* CSS เพิ่มเติมสำหรับ .contact-image-container */
+        .contact-image-container {
+            text-align: center; /* จัดรูปภาพให้อยู่กึ่งกลาง */
+            margin-bottom: 20px; /* เพิ่มระยะห่างด้านล่างเล็กน้อย */
+        }
+
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) { /* สำหรับ Tablet */
+            .hero { min-height: 450px; }
+            .hero h2 { font-size: 2.5em; }
+            .hero p { font-size: 1.2em; }
+            .section-title { font-size: 2.2em; }
+            .content-block { padding: 30px; }
+            .video-container iframe { height: 350px; }
+        }
+
+        @media (max-width: 768px) { /* สำหรับ Mobile */
+            .container {
+                width: 95%;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                margin-top: 10px;
+            }
+            nav ul li {
+                padding: 8px 0;
+            }
+            nav a {
+                padding: 6px 10px;
+                font-size: 15px;
+            }
+            header h1 {
+                font-size: 1.8em;
+                flex-direction: column;
+            }
+            header h1 img {
+                height: 35px;
+                margin-right: 0;
+                margin-bottom: 8px;
+            }
+            .hero {
+                min-height: 350px;
+            }
+            .hero h2 {
+                font-size: 2em;
+            }
+            .hero p {
+                font-size: 1em;
+            }
+            .section-title {
+                font-size: 1.8em;
+                margin-bottom: 30px;
+            }
+            .content-block {
+                padding: 25px;
+                margin-bottom: 20px;
+            }
+            .content-block h3 {
+                font-size: 1.5em;
+            }
+            .content-block h4 {
+                font-size: 1.1em;
+            }
+            .stop-point-item, .image-gallery-item {
+                flex: 1 1 45%;
+                max-width: 100%; /* ให้เต็มความกว้างในมือถือ */
+            }
+            .video-container iframe {
+                height: 250px;
+            }
+            #backToTop {
+                padding: 10px 15px;
+                font-size: 1.1em;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero { min-height: 300px; }
+            .hero h2 { font-size: 1.6em; }
+            .hero p { font-size: 0.9em; }
+            .section-title { font-size: 1.5em; }
+            .content-block h3 { font-size: 1.3em; }
+            .content-block h4 { font-size: 1em; }
+            .image-gallery-item, .stop-point-item {
+                flex: 1 1 100%; /* 1 คอลัมน์ในหน้าจอเล็กมาก */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>
+                <img src="images/botlink.png" alt="Keenon Robot Logo">
+                การนำเสนอ: หุ่นยนต์ Keenon W3 ณ โรงพยาบาลจุฬาภรณ์
+            </h1>
+            <nav>
+                <ul>
+                    <li><a href="#introduction">ภาพรวม</a></li>
+                    <li><a href="#keenon-w3">เกี่ยวกับ Keenon W3</a></li>
+                    <li><a href="#chulabhorn-hospital">การประยุกต์ใช้ในโรงพยาบาลจุฬาภรณ์</a></li>
+                    <li><a href="#benefits">ประโยชน์ที่ได้รับ</a></li>
+                    <li><a href="#contact">ติดต่อ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h2>ปฏิวัติการบริการด้วยนวัตกรรมหุ่นยนต์</h2>
+        <p>ยกระดับประสิทธิภาพและความปลอดภัยในการทำงานของบุคลากรทางการแพทย์</p>
+    </section>
+
+    <div class="container">
+        <section id="introduction" class="content-block">
+            <h2 class="section-title">ภาพรวมโครงการ</h2>
+            <p>การนำเสนอครั้งนี้มีวัตถุประสงค์เพื่อแสดงศักยภาพของหุ่นยนต์ Keenon W3 ในการสนับสนุนงานบริการและโลจิสติกส์ภายในโรงพยาบาลจุฬาภรณ์ ทั้งในส่วนของ<strong style="color:#0056b3;">อาคารอัครราชกุมารี (อาคาร 100 เตียง)</strong> และ<strong style="color:#0056b3;">กรมพระศรีสวางควัฒน (อาคาร 400 เตียง)</strong> เพื่อเพิ่มประสิทธิภาพ ลดภาระงานของบุคลากร และยกระดับคุณภาพการบริการผู้ป่วย</p>
+        </section>
+
+        <section id="keenon-w3" class="content-block">
+            <h2 class="section-title">ทำความรู้จักหุ่นยนต์ Keenon W3</h2>
+            <div class="image-gallery">
+                <div class="image-gallery-item">
+                    <img src="images/keenonw3.png" alt="Keenon W3 Robot">
+                    <div class="image-caption">หุ่นยนต์ Keenon W3</div>
+                </div>
+            </div>
+            <h3>คุณสมบัติทางเทคนิคหลัก</h3>
+            <ul>
+                <li><i class="fas fa-ruler-combined"></i> <strong>ขนาด (กว้าง x ลึก x สูง)</strong>: 45.9 x 54.9 x 108.1 ซม. (18.07" x 21.61" x 42.56")</li>
+                <li><i class="fas fa-weight-hanging"></i> <strong>น้ำหนัก</strong>: 48 กก. (106 ปอนด์)</li>
+                <li><i class="fas fa-tachometer-alt"></i> <strong>ความเร็วสูงสุด</strong>: 0.8 เมตร/วินาที (2.63 ฟุต/วินาที)</li>
+                <li><i class="fas fa-charging-station"></i> <strong>เวลาในการชาร์จ</strong>: 6.5 ชั่วโมง</li>
+                <li><i class="fas fa-box-open"></i> <strong>ความจุในการบรรทุกรวม</strong>: 20 กก. (44 ปอนด์)</li>
+                <li><i class="fas fa-battery-full"></i> <strong>อายุแบตเตอรี่</strong>: สูงสุด 12 ชั่วโมง</li>
+                <li><i class="fas fa-mountain"></i> <strong>ความสามารถในการขึ้นทางลาดชัน</strong>: สูงสุด 7°</li>
+                <li><i class="fas fa-road"></i> <strong>ความกว้างทางผ่านขั้นต่ำ</strong>: 70 ซม. (27.56")</li>
+            </ul>
+            <h3>ประโยชน์ทั่วไปของ Keenon W3</h3>
+            <p>หุ่นยนต์ Keenon W3 ได้รับการออกแบบมาเพื่อการขนส่งภายในอาคารอย่างมีประสิทธิภาพ ด้วยคุณสมบัติที่โดดเด่นด้านการนำทางที่แม่นยำ ความจุในการบรรทุกที่เหมาะสม และการทำงานที่ต่อเนื่องยาวนาน ช่วยลดภาระงานของบุคลากร เพิ่มความรวดเร็วในการบริการ และสร้างสภาพแวดล้อมที่ทันสมัย</p>
+
+            <h3>วิดีโอแนะนำ Keenon W3</h3>
+            <div class="video-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/hDVr_RCuxMs?si=X8YQ4XmHMoPyTLun" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <section id="chulabhorn-hospital" class="content-block">
+            <h2 class="section-title">การประยุกต์ใช้ในโรงพยาบาลจุฬาภรณ์</h2>
+
+            <h3> อาคารอัครราชกุมารี (อาคาร 100 เตียง)</h3>
+            <h4><i class="fas fa-bullseye"></i> วัตถุประสงค์ของการทดลองใช้หุ่นยนต์</h4>
+            <ul>
+                <li>ทดสอบความเป็นไปได้ในการใช้หุ่นยนต์ Keenon W3</li>
+                <li>ใช้สำหรับการขนส่งยาและโลหิตระหว่างชั้นภายในอาคาร</li>
+                <li>พิจารณาความเหมาะสมด้านเวลาและความปลอดภัย</li>
+            </ul>
+
+            <h4><i class="fas fa-building"></i> ข้อมูลอาคารและลิฟต์</h4>
+            <ul>
+                <li>อาคารมี 14 ชั้น</li>
+                <li>ใช้ลิฟต์หมายเลข 8 เป็นลิฟต์หลักสำหรับหุ่นยนต์</li>
+                <li>อาจมีการรอลิฟต์เนื่องจากใช้งานร่วมกับบุคลากรและผู้ป่วย</li>
+            </ul>
+            <div class="image-gallery">
+                <div class="image-gallery-item">
+                    <img src="images/lifeno8.jpg" alt="ลิฟต์อาคาร 100 เตียง">
+                    <div class="image-caption">ลิฟต์หมายเลข 8 ที่หุ่นยนต์จะใช้</div>
+                </div>
+            </div>
+
+            <h4><i class="fas fa-map-marker-alt"></i> จุดจอดหุ่นยนต์ที่เสนอ</h4>
+            <div class="stop-point-gallery">
+                <div class="stop-point-item">
+                    <img src="images/ชั้น5555.jpg" alt="จุดจอดหุ่นยนต์ชั้น 5">
+                    <div class="image-caption">จุดจอดหุ่นยนต์ชั้น 5</div>
+                </div>
+                <div class="stop-point-item">
+                    <img src="images/ชั้น888888.jpg" alt="จุดจอดหุ่นยนต์ชั้น 8">
+                    <div class="image-caption">จุดจอดหุ่นยนต์ชั้น 8</div>
+                </div>
+                <div class="stop-point-item">
+                    <img src="images/ชั้น333.jpg" alt="จุดจอดหุ่นยนต์ชั้น 9">
+                    <div class="image-caption">จุดจอดหุ่นยนต์ชั้น 9</div>
+                </div>
+            </div>
+            <ul>
+                <li> <strong>ชั้น 5</strong>:ห้อง Lab กลาง – รับ/ส่งโลหิต (ทุก Ward ที่มีการเบิกใช้เลือด)</li>
+                <li> <strong>ชั้น 8</strong>:ห้องยา – จัดส่งยาให้ IPD/OR (ปลายทางชั้น 8-14)</li>
+                <li> <strong>ชั้น 9</strong>:ห้องยาผสม – ผสมและกระจายยาเฉพาะโรค(ปลายทางชั้น 3,7,8,9,14)</li>
+            </ul>
+
+            <h4><i class="fas fa-tint"></i> ภารกิจการขนส่งโลหิต</h4>
+            <ul>
+                <li>ใช้กระติกควบคุมอุณหภูมิ (หุ่นยนต์รองรับ)</li>
+                <li>ส่งถึงปลายทางภายใน 15 นาที</li>
+                <li>เสี่ยงถ้าคอยลิฟต์นาน ควรมีลิฟต์แยกสำหรับหุ่นยนต์</li>
+            </ul>
+
+            <h4><i class="fas fa-pills"></i> ภารกิจการขนส่งยา</h4>
+            <ul>
+                <li>จัดส่งยา 1 (ฉีด / กิน) จากชั้น 8</li>
+                <li>ส่งถึง OR ชั้น 6 และ Ward อื่น ๆ</li>
+                <li>ความถี่:รอบการจัดส่งทุกๆ 1 ชม.</li>
+                <li>ระดับความเร่งด่วน: ปกติ – ด่วน</li>
+            </ul>
+
+            <h4><i class="fas fa-chart-line"></i> วิเคราะห์ความเหมาะสมของหุ่นยนต์</h4>
+            <ul>
+                <li> <strong>โลหิต</strong>:ปานกลาง – ต้องควบคุมเวลาและอุณหภูมิ (แนะนำให้พิจารณาการจัดการเวลาในการรอลิฟต์อย่างจริงจัง)</li>
+                <li> <strong>ยา</strong>:เหมาะสมมาก – น้ำหนักเบา ส่งถึงได้ (มีโอกาสที่หุ่นยนต์จะทำงานได้ดี)</li>
+            </ul>
+
+            <h4><i class="fas fa-tools"></i> ข้อเสนอเพิ่มเติม</h4>
+            <ul>
+                <li>ติดตั้งลิฟต์สำหรับหุ่นยนต์โดยเฉพาะ (ถ้าเป็นไปได้)</li>
+                <li>ต้องมีคนติดตามเวลาเดินทางของหุ่นยนต์ real-time เพื่อประเมินผลและแก้ไขปัญหา</li>
+            </ul>
+
+            <h4><i class="fas fa-clipboard-list"></i> แผนการทดลองและตัวชี้วัด</h4>
+            <ul>
+                <li><strong>ระยะที่ 1 (นำร่อง)</strong>:ทดสอบการขนส่งโลหิตและยาในเส้นทางที่กำหนด (เช่น ชั้น 5-8-9) เป็นเวลา 1 เดือน</li>
+                <li><strong>ตัวชี้วัดความสำเร็จ (KPIs)</strong>:
+                    <ul>
+                        <li>ลดระยะเวลาขนส่งเฉลี่ยได้ [X]%</li>
+                        <li>อัตราความผิดพลาดในการขนส่ง [ยา/โลหิต] ลดลงเหลือ [Y]%</li>
+                        <li>คะแนนความพึงพอใจของบุคลากรต่อการทำงานของหุ่นยนต์ [Z]%</li>
+                    </ul>
+                </li>
+                <li> <strong>แผนการขยายผล</strong>:หากผลการทดลองเป็นไปในทางที่ดี สามารถเพิ่มจำนวนหุ่นยนต์และขยายเส้นทางการขนส่งไปยัง Ward อื่นๆ ได้</li>
+            </ul>
+
+            <h4><i class="fas fa-headset"></i> การสนับสนุนและการบำรุงรักษา</h4>
+            <ul>
+                <li>ทีมสนับสนุนด้านเทคนิคจาก Botlink Group พร้อมให้ความช่วยเหลือตลอด 24ชั่วโมง</li>
+                <li>การฝึกอบรมบุคลากรด้านการใช้งานและแก้ปัญหาเบื้องต้น (Troubleshooting)</li>
+                <li>แผนการบำรุงรักษาเชิงป้องกัน (Preventive Maintenance) 4 ครั้ง/ปี และการจัดหาอะไหล่</li>
+            </ul>
+
+
+            <h3>กรมพระศรีสวางควัฒน (อาคาร 400 เตียง)</h3>
+            <h4><i class="fas fa-tasks"></i> วิเคราะห์ภาระงาน</h4>
+            <ul>
+                <li>มีภารกิจขนส่งต่อวันจำนวนมาก ทั้งในช่วงเวลาปกติและเร่งด่วน</li>
+                <li>จุดหมายปลายทางกระจายทั้งแนวราบ แต่ละปีกตึก และแนวตั้ง แต่ละชั้น</li>
+                <li>มีการใช้งานตลอด 24 ชั่วโมง โดยเฉพาะใน Ward IPD ชั้น 5, 6, 8, 9</li>
+            </ul>
+            <h4><i class="fas fa-robot"></i> การวางจุดติดตั้งหุ่นยนต์</h4>
+            <ul>
+                <li> <strong>ตัวที่ 1</strong>:ห้องยาหลักชั้น1 #จุดนี้ควรมีหุ่นยนต์2ตัว(จุดเริ่มต้นหลักของภารกิจขนส่ง)</li>
+                <li> <strong>ตัวที่ 2</strong>:ห้องยาชั้น2 ส่งระหว่างชั้น ไม่จำเป็นต้องขึ้นลิฟต์ สามารถย้ายไปช่วยชั้น 1 ได้ </li>
+                <li> <strong>ตัวที่ 3</strong>:LAB กลางชั้น5 (ส่งตามWard และ OPD ทุกแผนก)</li>
+                <li> <strong>ตัวที่ 4</strong>:(ถ้าต้องการสำรองหรือรองรับช่วงเวลาเร่งด่วน): ชั้น 2 หรือ 3 ฝั่ง B เพื่อรองรับ OPD ที่มีปริมาณงานสูงในช่วงกลางวัน</li>
+            </ul>
+            <h4><i class="fas fa-map-marker-alt"></i> ภาพจุดจอดหุ่นยนต์</h4>
+            <div class="stop-point-gallery">
+                <div class="stop-point-item">
+                    <img src="images/ห้องยาชั้น1-.jpg" alt="Robot Stop Point at Ward">
+                    <div class="image-caption">จุดจอดหุ่นยนต์: ห้องยาหลักชั้น 1</div>
+                </div>
+                <div class="stop-point-item">
+                    <img src="http://googleusercontent.com/image_generation_content/1" alt="Robot Stop Point at Corridor">
+                    <div class="image-caption">จุดจอดหุ่นยนต์: ห้องยาชั้น 2</div>
+                    <div class="image-caption"><strong>(รอคำแนะนำจากทางโรงพยาบาล)</strong></div>
+                </div>
+                <div class="stop-point-item">
+                    <img src="http://googleusercontent.com/image_generation_content/2" alt="Robot Stop Point at Lab">
+                    <div class="image-caption">จุดจอดหุ่นยนต์: LAB กลางชั้น 5</div>
+                    <div class="image-caption"><strong>(รอคำแนะนำจากทางโรงพยาบาล)</strong></div>
+                </div>
+            </div>
+            <h4><i class="fas fa-calculator"></i> เหตุผลในการกำหนดจำนวน</h4>
+            <ul>
+                <li>อย่างน้อย 3 ตัว เพื่อให้รองรับการขนส่งพร้อมกันในแต่ละปีกตึก และลดเวลารอคิวลิฟต์หรือภารกิจซ้อนทับ</li>
+                <li>หากต้องการความต่อเนื่องและสำรองกรณีหุ่นยนต์ชาร์จแบตหรือซ่อมบำรุง ควรมี 4 ตัว (3 ตัวหลัก + 1 ตัวสำรอง/เสริม)</li>
+            </ul>
+        </section>
+
+        <section id="benefits" class="content-block">
+            <h2 class="section-title">ประโยชน์ที่โรงพยาบาลจะได้รับ</h2>
+            <ul>
+                <li><i class="fas fa-chart-pie"></i> <strong>เพิ่มประสิทธิภาพ</strong>: ลดเวลาและภาระงานของบุคลากรในการขนส่ง โดยหุ่นยนต์สามารถทำงานได้ตลอด 24ชั่วโมง ไม่มีเหนื่อยล้าหรือความผิดพลาดจากการเมื่อยล้า</li>
+                <li><i class="fas fa-shield-alt"></i> <strong>ลดความเสี่ยง</strong>: ลดโอกาสการติดเชื้อจากการสัมผัสสิ่งของและพื้นที่เสี่ยง รวมถึงลดอุบัติเหตุจากการขนย้ายของบุคลากร</li>
+                <li><i class="fas fa-star"></i> <strong>ยกระดับบริการ</strong>: เพิ่มความรวดเร็วและแม่นยำในการส่งมอบสิ่งของสำคัญ เช่น ยาและโลหิต ซึ่งส่งผลโดยตรงต่อคุณภาพการรักษาและความพึงพอใจของผู้ป่วย</li>
+                <li><i class="fas fa-coins"></i> <strong>ประหยัดต้นทุน</strong>:ลดภาระงานบุคลากรในการขนส่งได้ (ตัวอย่าง: จากการที่บุคลากรสามารถไปปฏิบัติงานที่ต้องใช้ทักษะสูงกว่า เช่น การดูแลผู้ป่วยโดยตรง แทนงานขนส่งซ้ำซ้อน)</li>
+                <li><i class="fas fa-lightbulb"></i> <strong>ภาพลักษณ์นวัตกรรม</strong>: สร้างภาพลักษณ์ความเป็นผู้นำด้านเทคโนโลยีทางการแพทย์ ดึงดูดบุคลากรทางการแพทย์รุ่นใหม่ และสร้างความเชื่อมั่นให้กับผู้ใช้บริการ</li>
+                <li><i class="fas fa-percent"></i> <strong>ผลตอบแทนการลงทุน(ROI)</strong>: หุ่นยนต์จะช่วยให้การทำงานมีประสิทธิภาพสูงขึ้น ลดความผิดพลาดและภาระงาน ซึ่งเมื่อเวลาผ่านไปจะช่วยให้เกิดการประหยัดต้นทุนและเพิ่มคุณค่าให้โรงพยาบาลในระยะยาว</li>
+            </ul>
+            
+            <h3><i class="fas fa-handshake"></i> คุณค่าที่ Keenon W3 มอบให้โรงพยาบาล</h3>
+            <ul>
+                <li> <strong>ลดภาระงานบุคลากร</strong>: หุ่นยนต์ Keenon W3 จะเข้ามาทำหน้าที่ขนส่งสิ่งของที่ใช้แรงงานและเวลามาก ทำให้พยาบาลและเจ้าหน้าที่สามารถทุ่มเทเวลาให้กับการดูแลผู้ป่วยและงานที่ต้องใช้ปฏิสัมพันธ์กับคนได้อย่างเต็มที่</li>
+                <li> <strong>ความแม่นยำและสม่ำเสมอ</strong>: หุ่นยนต์ทำงานได้ 24ชั่วโมง ไม่มีเหนื่อย ไม่มีความผิดพลาดจากความเมื่อยล้า ทำให้การบริการเป็นไปอย่างสม่ำเสมอและแม่นยำ โดยเฉพาะในภารกิจสำคัญอย่างการขนส่งยาและโลหิต</li>
+                <li> <strong>สร้างสภาพแวดล้อมการทำงานที่ปลอดภัยและทันสมัย</strong>: ลดความเสี่ยงจากการสัมผัสเชื้อโรค และสร้างบรรยากาศที่ดีและดึงดูดบุคลากร</li>
+            </ul>
+            
+            
+            <h3><i class="fas fa-check-circle"></i> การจัดการข้อกังวลที่พบบ่อย</h3>
+            <ul>
+                <li> <strong>ความปลอดภัยของหุ่นยนต์</strong>: หุ่นยนต์ Keenon W3 มาพร้อมระบบเซ็นเซอร์และระบบนำทางอัจฉริยะ (SLAM) ที่ช่วยป้องกันการชนสิ่งกีดขวาง คน และการตกจากบันได รวมถึงมีระบบหยุดฉุกเฉิน</li>
+                <li> <strong>การทำงานร่วมกับบุคลากร</strong>: หุ่นยนต์ถูกออกแบบมาให้ทำงานร่วมกับมนุษย์ได้อย่างราบรื่น มีสัญญาณเสียงและไฟเตือนเมื่อเข้าใกล้ และสามารถหลบหลีกเส้นทางได้อัตโนมัติ</li>
+                <li> <strong>การบูรณาการระบบ</strong>: มีแนวทางในการเชื่อมต่อระบบลิฟต์อัจฉริยะ  และสามารถพัฒนาการเชื่อมต่อกับระบบสารสนเทศของโรงพยาบาล (HIS, Pharmacy) ในอนาคตได้</li>
+            </ul>
+
+
+            <h3><i class="fas fa-check-circle"></i> รูปแบบการให้บริการของบริษัทบอทท์ลิงก์</h3>
+        บริษัทบอทท์ลิงก์จะให้บริการหุ่นยนต์ภายใต้รูปแบบการให้บริการแบบเช่าใช้งานรายเดือน (Subscription-based Service) หรือขายขาด (One-time Purchase) โดยโรงพยาบาลสามารถเลือกตามความเหมาะสม ดังรายละเอียดต่อไปนี้:
+                <li> <strong>แบบเช่าบริการรายเดือน</strong>:โรงพยาบาลจะชำระค่าบริการรายเดือนตามจำนวนหุ่นยนต์ที่ใช้(ขั้นต่ำ3ปี)  และจะได้รับการบำรุงรักษา ซ่อมแซม และอัพเดตซอฟต์แวร์ฟรีตลอดระยะเวลาสัญญา
+                <li> <strong>แบบขายขาด</strong>: โรงพยาบาลจะชำระเงินค่าหุ่นยนต์ตามราคาขายครั้งเดียว โดยรวมการรับประกันสินค้า 1 ปี (สามารถขยายระยะเวลาได้ตามสัญญา) การบำรุงรักษาเพิ่มเติมอยู่ในเงื่อนไขบริการหลังการขาย
+          
+            </ul>
+                
+        </section>
+            
+        
+
+        <section id="contact" class="content-block">
+            <h2 class="section-title">ติดต่อสอบถามข้อมูลเพิ่มเติม</h2>
+            <div class="contact-image-container">
+                <img src="images/QRcode.png" alt="QRcode">
+            </div>
+        </section>
+    </div>
+            
+            
+
+    <footer>
+        <p>© 2025 [Botlink Co., Ltd. is certified by ISO 9001:2015 of Robotics ©BOTLINK]. All rights reserved.</p>
+    </footer>
+
+    <a href="#" id="backToTop"><i class="fas fa-arrow-up"></i></a>
+
+    <script>
+        // Back to Top Button
+        const backToTopButton = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 200) { // Show button after scrolling 200px
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Active Navigation Link
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('nav ul li a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100; // Adjust for header height
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
